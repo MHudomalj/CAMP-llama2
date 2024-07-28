@@ -36,7 +36,7 @@ http://127.0.0.1:3000/api/chat
 ```
 
 ## Optional arguments:
-optional arguments:
+```
   -h, --help            show this help message and exit
   --host HOST           IP address of the server. default=127.0.0.1
   --port PORT           PORT number of the server. default=3000
@@ -46,6 +46,7 @@ optional arguments:
                         default=store_true
   --num_torch_threads {1,2,3,4,5,6,7,8}
                         Number of torch threads. default=8
+```
 
 ## Testing
 In another terminal you can run the llama_test.py that sends requests to test the serve. It requires python package:
