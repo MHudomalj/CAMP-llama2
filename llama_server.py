@@ -23,8 +23,8 @@ from utils import Utils
 
 def load_model(args):
     tokenizer = LlamaTokenizer.from_pretrained("./llama-2-wts-hf/7B_chat")
-    ckpt = "pytorch_llama27b_w_bit_{}_awq{}_{}amd.pt".format(args.w_bit, "_fa" if args.flash_attention else "",
-                                                             "lm_" if args.lm_head else "")
+    ckpt = "pytorch_llama27b_w_bit_{}_awq{}_{}amd.pt".format(args.w_bit, "_fa" if args.flash_attention == 'True' else "",
+                                                             "lm_" if args.lm_head == 'True' else "")
     print(f"Loading from ckpt: {ckpt}")
     if not os.path.exists(ckpt):
         print(
@@ -130,8 +130,8 @@ if __name__ == "__main__":
     parser.add_argument("--port", help="PORT number of the server. default=3000", type=int, default=3000)
 
     parser.add_argument('--w_bit', help="Quantized bit size. default=3", type=int, default=3, choices=[3, 4])
-    parser.add_argument('--flash_attention', help="Enable flash attention. default=store_true", action='store_true')
-    parser.add_argument('--lm_head', help="Enable quantization of lm_head layer. default=store_true", action='store_true')
+    parser.add_argument('--flash_attention', help="Enable flash attention. default='True'", default='True')
+    parser.add_argument('--lm_head', help="Enable quantization of lm_head layer. default='True'", default='True')
     parser.add_argument('--num_torch_threads', help="Number of torch threads. default=8", type=int, default=8,
                         choices=[1, 2, 3, 4, 5, 6, 7, 8])
     args = parser.parse_args()
